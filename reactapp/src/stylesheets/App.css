@@ -1,0 +1,305 @@
+.header {
+  display: flex;
+  height: 100px;
+  background-color: rosybrown;
+}
+
+
+.header-li {
+  text-decoration: none;
+  font-size: 20px;
+  list-style-type: none;
+  font-weight: bolder;
+  margin: 20px;
+}
+
+.banner {
+  display: flex;
+  height: 400px;
+  background-color: silver;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+  text-align: center
+}
+
+body {
+  background-color: #FDFDF5;
+}
+
+.main {
+  width: 80%;
+}
+
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*QUESTIONNAIRE*/
+.home-quest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-hp {
+  text-align: center;
+  font-size: 60px;
+}
+
+.image {
+  width: 400px;
+  height: auto;
+  margin-left: 40px;
+
+}
+
+.text-banner {
+  text-align: center;
+  margin-left: 70px;
+  font-size: 20px;
+}
+
+.text-hp {
+  text-align: left;
+  margin-left: 70px;
+  font-size: 20px;
+  border: 1px solid #F8C29F;
+  width: 70%;
+  height: auto;
+}
+
+.buttons-hp {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-arr {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.button {
+  background-color: #F8C29F;
+  width: 209px;
+  height: 70px;
+  border-radius: 22px;
+  margin: 20px;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: black;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: solid 1px #303036;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.google {
+  width: 200px;
+  height: auto;
+}
+
+.apple {
+  width: 130px;
+  height: auto;
+}
+
+.quest-button {
+  background-color: #FCE7D9;
+  width: 150px;
+  height: 30px;
+  margin: 10px;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: black;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: solid 1px #303036;
+  font-size: 14px;
+}
+
+.button-selected {
+  background-color: #F8C29F;
+  width: 150px;
+  height: 30px;
+  margin: 10px;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: black;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: solid 1px #303036;
+  font-size: 14px;
+}
+
+.map {
+  margin-bottom: 20px;
+}
+
+.space-duration {
+  height: 124px
+}
+
+.space-outdoor {
+  height: 181px
+}
+
+.space-budget {
+  height: 24px
+}
+
+.space-distance {
+  height: 131px
+}
+
+.space-mood {
+  height: 74px
+}
+
+.space-preference {
+  height: 74px
+}
+
+.space-excludes {
+  height: 24px
+}
+
+.loading-text {
+  font-size: 25px;
+}
+
+.loading-image {
+  height: 300px;
+  width: auto;
+}
+
+.space-loading {
+  height: 59px
+}
+
+.space-process {
+  height: 47px
+}
+
+.title-process {
+  font-size: 35px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.text-process {
+  font-size: 17px;
+  text-align: left;
+}
+
+.image-process {
+  width: 400px;
+  height: auto;
+  margin-right: 40px;
+}
+
+.banner {
+  height: 60vh;
+  width: auto;
+}
+
+.card-hp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #FCE7D9;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.card-style {
+  border: solid 2px #F8C29F;
+  width: 400px;
+  height: auto;
+  margin: 20px;
+}
+
+.text-err{
+  color: red;
+  font-size: 12px;
+}
+
+.home-recipe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  border: solid 1px blue;
+  margin: 20px;
+  background-color: #FCE7D9
+}
+
+.img-recipe {
+  width: 300px;
+  height: auto;
+  border: solid 2px black;
+}
+
+.text-recipe {
+  font-size: 18px;
+  text-align: center;
+  font-style: italic;
+}
+
+.text-recipe-prep {
+  width: 80%;
+}
+
+.hr {
+  color: blueviolet
+}
+
+.button-recipe {
+    background-color: #F8C29F;
+    width: 209px;
+    height: 70px;
+    border-radius: 22px;
+    margin: 20px;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: solid 1px #303036;
+  }
+
+  .save-button {
+    background-color: #303036;
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: #F8C29F;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    border: solid 1px #303036;
+    font-size: 14px;
+  }
+
