@@ -148,7 +148,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
               </div>
                <div className="save-button" >
                   <p
-                    className="button-recipe"
+                    className="save-button"
                     onClick={()=> {saveRecipe(r._id); console.log('je suis dans le click')}}
                      >Enregistrer cette recette</p>
                   </div> 
@@ -181,13 +181,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         <div className="homepage-main">
 
             <div className="home-quest">
-                <h2 className="title-process">Tout d'abord choisissez la catégorie de recette <br/> que vous souhaitez cuisiner</h2>
+                <h2 className="title-process">Tout d'abord choisissez la catégorie de recette que vous souhaitez cuisiner</h2>
                 <p>Vous ne serez plus en manque d'inspiration pour vos repas du quotidien !</p>
-                <p>Vous souhaitez  découvrir quel type de recette :</p>
             </div>
-            <div>
-            <h4> <Link to="logpage">Connectez-vous pour enregistrer vos recettes préférées</Link></h4>
-            </div>
+        </div>
+            <h4 className='title-connect'> <Link to="logpage">N'oubliez pas de vous connectez pour enregistrer vos recettes préférées</Link></h4>
             <div className='buttons-hp'>
                 <button             
                     className="button-recipe"
@@ -205,7 +203,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                 </div>
 
        
-                </div>
+                
                 <Footer/>
         </div>
     )
