@@ -12,4 +12,4 @@ const userRecipes = (state = [], action) => {
     }
 };
 
-export default uesrReci;
+export default userRecipes;

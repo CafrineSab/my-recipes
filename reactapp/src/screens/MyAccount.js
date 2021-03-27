@@ -15,13 +15,13 @@ const MyAccount = (props) => {
             
             setMyInfos(props.userInfo)
 
-            const data = await fetch(`/get-recipes/${props.userInfo.token}`);
+            const data = await fetch(`/get-recipes/${props.userInfo.id}`);
+            
             const userRecipe = await data.json()
-            
+        
+            setRecipeSaved(userRecipe);
             console.log('data:', data)
-            console.log('userRecipe :', userRecipe.recipe)
-            setRecipeSaved(userRecipe.user);
-            
+            console.log('userRecipe :', userRecipe)
     };
     saveRecipeAccount();
     }, [])

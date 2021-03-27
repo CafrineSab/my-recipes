@@ -106,7 +106,7 @@ router.post('/sign-up', async function(req, res, next) {
 //recherche des recettes par catégorie
 router.post('/recipes', async function(req, res, next) {
   const category = req.body.categorie
-  console.log('ligne 104:', req.body)
+  console.log('categorie:', category)
 
       const recipe = await recipeModel.find({categorie: category})
 
@@ -160,7 +160,7 @@ console.log("req.body@@@@@@@", JSON.parse(req.body.recipes))
   .then(data => {
     if (!data) {
       res.status(404).send({
-        message: `Cannot update Tutorial with id=${token}. Maybe Tutorial was not found!`
+        message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
       });
     } else res.send({ message: "Tutorial was updated successfully." });
   })
@@ -183,23 +183,24 @@ console.log("req.body@@@@@@@", JSON.parse(req.body.recipes))
   // })
 
 //enregistre les recettes dans son compte
-router.get('/get-recipes/:token', async function (req, res, next) {
+router.get('/get-recipes/:id', async function (req, res, next) {
 
-  const recipe = await recipeModel.findById(req.query.id)
-
+  const recipe = await recipeModel.findById({_id: req.params.id})
+  //const recipeParse = JSON.parse(recipe);
+  console.log('recipe',recipe)//c'est null ??
   // const user = await userModel.findOne({token: req.params.token})
   // .populate('recipes')
   // .exec()
 
-  const user = await userModel.findOne({token: req.params.token})
+  const user = await userModel.findOne({_id: req.params.id})
   .populate({
     path: 'recipes',
     model: recipeModel
-  }).exe()
+  }).exec()
 
-  console.log('user populate: ', user.recipes)
+  console.log('user populate: ', user)
   
-  res.json({message: 'ok bien reçu du back', user: user.recipes});
+  res.json(/*message: 'ok bien reçu du back',*/ user.recipes);
 })
 
 
