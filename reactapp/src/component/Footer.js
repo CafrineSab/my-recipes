@@ -1,16 +1,11 @@
-import {Link} from 'react-router-dom'
-import '../stylesheets/App.css'
 
-const Footer = (props)=> {
-    return(
-    <div>
-        <nav  className="header">
-          <Link to="/" className="header-li"> Accueil </Link>
-          <Link to="/myaccount" className="header-li"> Mon compte </Link>
-          <Link to="/logpage" className="header-li"> Se connecter </Link>
-        </nav>
-    </div>
+function Footer() {
+    return (
+        <div className="footer">
+            <p>Conditions générales d'utilisations</p>
+            <p>Nous contacter</p>   
+        </div>
     )
 }
 
-export default Footer;
+export default Footer

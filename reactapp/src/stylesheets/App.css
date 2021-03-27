@@ -6,6 +6,13 @@
   align-items: center;
 }
 
+.footer {
+  padding: 20px;
+  height: 100px;
+  background-color: #25221e;
+  color: #FDFDF5;
+}
+
 
 .header-li {
   font-size: 20px;
@@ -185,38 +192,6 @@ body {
   font-size: 14px;
 }
 
-.map {
-  margin-bottom: 20px;
-}
-
-.space-duration {
-  height: 124px
-}
-
-.space-outdoor {
-  height: 181px
-}
-
-.space-budget {
-  height: 24px
-}
-
-.space-distance {
-  height: 131px
-}
-
-.space-mood {
-  height: 74px
-}
-
-.space-preference {
-  height: 74px
-}
-
-.space-excludes {
-  height: 24px
-}
-
 .loading-text {
   font-size: 25px;
 }
@@ -224,14 +199,6 @@ body {
 .loading-image {
   height: 300px;
   width: auto;
-}
-
-.space-loading {
-  height: 59px
-}
-
-.space-process {
-  height: 47px
 }
 
 .title-process {
@@ -284,31 +251,57 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 35%;
-  border: solid 1px #F8C29F;
+  width: 70%;
   margin: 20px;
-  background-color: #f5f5dc
 }
 
+.recipe{
+  display: flex;
+  /* {justify-content:center;} */
+  align-items: center;
+  flex-direction: column;
+}
+
+.recipe-card {
+  display: flex;
+  /* {align-items:flex-end;} */
+  flex-direction: column;
+  margin: 30px;
+  width: 100ù;
+}
+
+.recipe-saved {
+  /* {width: 30%;} */
+  margin: 20px;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
 .img-recipe {
-  width: 300px;
+  width: 70%;
   height: auto;
   border: solid 2px #f5f5dc;
 }
 
 .text-recipe {
+  width: 100%;
   font-size: 18px;
   text-align: center;
   font-style: italic;
+  margin-bottom: 20px;
+  border-bottom: #8b4513 2px solid;
 }
 
 .text-recipe-prep {
   width: 80%;
 }
 
-.hr {
-  color: blueviolet
-}
 
 .button-recipe {
     background-color: #F8C29F;
@@ -341,3 +334,24 @@ body {
     font-size: 14px;
   }
 
+  .logpage {
+    display: flex;
+    justify-content: space-around;
+
+  }
+
+  .sign-in {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px;
+  }
+
+  .sign-up {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px;
+  }

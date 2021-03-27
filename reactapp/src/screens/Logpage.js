@@ -3,6 +3,7 @@ import '../stylesheets/App.css'
 import Header from '../component/Header'
 import {Redirect, Link} from 'react-router-dom'
 import { connect } from 'react-redux';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
   function Logpage(props){
     //SIGN-IN
@@ -23,6 +24,7 @@ import { connect } from 'react-redux';
     const [validPassword, setValidPassword] = useState(false);
     const [message, setMessage] = useState(null);
     const [messagePassword, setMessagePassword] = useState('');
+
 
 
     //Connection back pour sign-in
@@ -172,87 +174,102 @@ import { connect } from 'react-redux';
   
   
     return (
-        <div>
+      <div>
           <Header/>
-        <div className="home-quest">
 
-            <h1>SIGN UP</h1>
-            <form action="sign-up" method="POST">
+        <div className="logpage">
+          <div className="sign-up">
+
+            <h3>Vous n'avez pas de compte</h3>
+            <Form>
                 <div>
-                    <input 
+
+                  <Label>Nom*</Label>
+                    <Input 
                         type="text" 
                         onChange={(e) => setLastName(e.target.value)}
-                        placeholder="Nom *"
+                        placeholder=""
                         value={lastName}/>                
                 </div>
                 <div>
-                    <input 
+                  <Label>Prénom*</Label>
+                    <Input 
                     type="text" 
                     onChange={(e)=>setfirstName(e.target.value)}
-                    placeholder="Prénom *"
+                    placeholder=""
                     value={firstName}/>
                 </div>
                 <div>
-                    <input 
+                  <Label>Email*</Label>
+                    <Input 
                     type="text" 
                     onChange={(e)=>setSignUpEmail(e.target.value)}
-                    placeholder="Email *"
+                    placeholder=""
                     value={signUpEmail}/>
                 </div>
                 <p className="text-err">{message}</p>
                 <div>
-                    <input 
+                  <Label>Mot de passe*</Label>
+                    <Input 
                     type="password" 
                     onChange={(e)=>setSignUpPassword(e.target.value)}
-                    placeholder="Mot de passe *"
+                    placeholder=""
                     value={signUpPassword}/>
                 </div>
                   <p className="text-err">{messagePassword}</p>
               
                 <div>
-                    <input 
+                  <Label>Confirmer mot de passe*</Label>
+                    <Input 
                     type="password" 
                     onChange={(e)=>setConfirmSignUpPassword(e.target.value)}
-                    placeholder="Confirmation de mot de passe *"
+                    placeholder=""
                     value={confirmSignUpPassword}/>
                 </div>
                 {isValid === true ? null : <p className="text-err">Les mots de passe ne correspondent pas</p>}
-            </form>
+            </Form>
             <p className="text-err">{tabErrorsSignup}</p>
-            <button 
-                className="quest-button"
+            <Button 
                 onClick={()=>{ handleSignUpSubmit(); console.log('je suis dadns le bouton sign-up')}}
-                >Sign up</button>
-
+                >Créer mon compte</Button>
+          </div>
+          
             {/*----------SIGNIN----------*/}
-            <h1>SIGN IN</h1>
-            <form action="sign-in" method="POST">
-                <div>
-                    <input 
-                        type="text" 
-                        onChange={(e) => setSignInEmail(e.target.value)}
-                        placeholder="Email"
-                        value={signInEmail}/>                
-                </div>
-                <div>
-                    <input 
-                    type="password" 
-                    onChange={(e)=>setSignInPassword(e.target.value)}
-                    placeholder="Mot de passe"
-                    value={signInPassword}/>
-                </div>
-            </form>
+          <div className="sign-in">
+            <h3>Vous avez déjà un compte</h3>
+            <Form>
+      <FormGroup>
+        <Label for="exampleEmail">Email*</Label>
+        <Input 
+          type="email" 
+          name="email" 
+          id="exampleEmail" 
+          placeholder=""
+          onChange={(e) => setSignInEmail(e.target.value)}
+          value={signInEmail} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="examplePassword">Mot de passe*</Label>
+        <Input 
+          type="password" 
+          name="password" 
+          id="examplePassword" 
+          placeholder=""
+          onChange={(e)=>setSignInPassword(e.target.value)}
+          value={signInPassword} />
+      </FormGroup>
+      </Form>
+
             <p className="text-err">{tabErrorsSignin}</p>  
               
-            <button 
-                className="quest-button"
+            <Button 
                 onClick={()=> handleSignInSubmit()}
-                >Sign in</button>
+                >Se connecter</Button>
 
 
         </div>
         </div>
-
+        </div>
     )
 }
 

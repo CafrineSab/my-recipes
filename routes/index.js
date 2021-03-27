@@ -116,30 +116,42 @@ router.post('/recipes', async function(req, res, next) {
 })
 
 //ajoute des recettes de l'utilisateur depuis son compte
-/*router.post('/add-recipe', async function (req, res, next) {
-  const user = await userModel.findOne({ token: req.body.token });
-  console.log('user: ', user)
-  if (user) {
-    const recipe = req.body.recipe
-  } else {
-    const saveRecipe = req.body.recipe;
-    console.log(saveRecipe);
+router.post('/add-new-recipe', async function (req, res, next) {
+// {  const user = await userModel.findOne({ token: req.body.token });
+//   console.log('user: ', user)}
+  // if (user) {
+  //   const recipe = req.body.recipe
+  // } else {
+    //const saveRecipe = req.body.recipe;
+    //console.log(saveRecipe);
+    console.log('req.categorie!!!!!', req.body.categorie)
+    console.log('req.name!!!!!', req.body.name)
+    console.log('req.ingredients!!!!!', req.body.ingredients)
+    console.log('req.preparation!!!!!', req.body.preparation_time)
+    console.log('req.prepTime!!!!!', req.body.time)
+    console.log('req.cookTime!!!!!', req.body.cook_time)  
+    console.log('req.pictures!!!!!', req.body.picture)       
+
+
     const newRecipe = new recipeModel({
-      categorie: saveRecipe.categorie,
-      name: saveRecipe.name,
-      picture: saveRecipe.picture,
-      ingredients: saveRecipe.ingredients,
-      preparation: saveRecipe.preparation,
+      categorie: req.body.categorie,
+      name: req.body.name,
+      ingredients: req.body.ingredients,
+      preparation: req.body.preparation,
+      picture: req.body.picture,
+      time: req.body.time,  
+      preparation_time: req.body.preparation_time,  
+      cook_time: req.body.cook_time,
     });
-    newRecipe.users.push(req.body.token);
-    await newRecipe.save();
+    //newRecipe.users.push(req.body.token);
+   const savedRecipe = await newRecipe.save();
    // user.itineraries.push(newItinerary._id);
    // await user.save();
-   console.log('saverecipe:', saveRecipe)
-   console.log('newRecipe :', newRecipe)
-  }
-  res.json({ message: "ok" });
-});*/
+  // console.log('saverecipe:', saveRecipe)
+   console.log('newRecipe :', savedRecipe)
+ // }
+  res.json({ message: "ok", category: savedRecipe.categorie, nameRecipe: savedRecipe.name, ingredients: savedRecipe.ingredients, time: savedRecipe.preparation_time });
+});
 
 router.put('/add-recipe', async function (req, res, next) {
   console.log('je passe ici')
@@ -202,6 +214,7 @@ router.get('/get-recipes/:id', async function (req, res, next) {
   
   res.json(/*message: 'ok bien reçu du back',*/ user.recipes);
 })
+
 
 
 

@@ -6,7 +6,8 @@ import {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, CardImg, Card, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle, Collapse, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
     function Homepage(props){
@@ -20,6 +21,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleRecipe = () => setIsOpen(!isOpen);
       
     console.log('modal:', modal)
 
@@ -57,56 +62,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     }
     console.log('recettes:', recipes)
 
-     /*   var saveRecipe = async() => {
-          const data =  await fetch(`/get-recipes/${props.userInfo.token}`
-          )
-            const addRecipe = await data.json()
-            console.log('addRecipe:', addRecipe.message)
-            if(addRecipe.message === "Not Found"){
-              <Redirect to="/logpage" />  
-            }
-        }*/
-
     var saveRecipe = async (_id) => {
-        const array = [{
-          _id: '605a97330e0832ea1ec2dc26',
-          categorie: 'Dessert',
-          name: 'salades',
-          picture: 'www.sab.com',
-          ingredients: ['toto', 'oeufs', 'salade'],
-          preparation: 'préparation',
-          time: '1h30',
-          preparation_time: '30 mn',
-          cook_time: '2mn',
-          accessibility: 'pas cher',
-          cost: 'facile'
-      },
-      {
-        _id: '605b061c0c977407a785421f',
-        categorie: 'Dessert',
-        name: 'salades',
-        picture: 'www.sab.com',
-        ingredients: ['toto', 'oeufs', 'salade'],
-        preparation: 'préparation',
-        time: '1h30',
-        preparation_time: '30 mn',
-        cook_time: '2mn',
-        accessibility: 'pas cher',
-        cost: 'facile'
-      },
-      {
-        _id: '605b068b0c977407a785a9c8',
-        categorie: 'Dessert',
-        name: 'salades',
-        picture: 'www.sab.com',
-        ingredients: ['toto', 'oeufs', 'salade'],
-        preparation: 'préparation',
-        time: '1h30',
-        preparation_time: '30 mn',
-        cook_time: '2mn',
-        accessibility: 'pas cher',
-        cost: 'facile'
-      }]
+
           console.log("ident", _id)
           const postRecette = recipes.find(r => r._id === _id)
           props.saveRecipe(postRecette)
@@ -123,52 +80,62 @@ import 'bootstrap/dist/css/bootstrap.min.css';
           const addRecipe = await data.json()
           console.log('addRecipe :', addRecipe)
           }
-
-   
+          if(props.connexion === false){
+            <p>Merci de vous connecter pour enregistrer la recette</p>
+          } 
 } 
 
 
     //Affiche les recettes au click de l'utilisateur
       var recipeListItems = recipes.map((r, i) => {
           return(
-          <div key={i} className="home-recipe">   
-            
-              <h2>{r.name}</h2> 
-              <div>
-              <img className='img-recipe' src={r.picture}/>
-              </div>
-              <div className="text-recipe">
-              <p>{`Temps total : ${r.time}, préparation: ${r.preparation_time}, cuisson: ${r.cook_time}`}</p>
-              <p>{`${r.accessibility}, ${r.cost}`}</p></div>
-              <div className='text-recipe-prep'>
-              <h4>Ingrédients :</h4>
-              <p >{r.ingredients}</p>
-              <h4>Préparation :</h4>
-              <p>{r.preparation}</p>
-              </div>
-               <div className="save-button" >
-                  <p
-                    className="save-button"
-                    onClick={()=> {saveRecipe(r._id); console.log('je suis dans le click')}}
-                     >Enregistrer cette recette</p>
-                  </div> 
-                <div>
-     {/* { <Button color="danger" onClick={toggle}>Enregistrer</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-          Merci de vous connecter pour enregistrer une recette
-        </ModalBody>
-        <ModalFooter>
-          <Button 
-            color="secondary" 
-            onClick={() => saveRecipe()}>Me connecter</Button>
-        </ModalFooter>
-      </Modal>} */}
-    </div>
+          <div key={i} className="home-recipe">
+            <Card>
+              <CardImg top width="100%" src={r.picture} alt="Card image cap" />
+                <CardTitle tag="h5">{r.name}</CardTitle>
+                <CardText>{`Temps total : ${r.time}, préparation: ${r.preparation_time}, cuisson: ${r.cook_time}`}</CardText >
+                <Button color="primary" onClick={()=>toggleRecipe()} style={{ marginBottom: '1rem' }}>Découvrir la recette</Button>
+                <Collapse isOpen={isOpen}>
+                <CardSubtitle tag="h6" className="mb-2 text-muted">
+                Ingrédients :
+                </CardSubtitle>
+                <CardText>{r.ingredients}</CardText>
+                    <CardBody>
+                      <CardSubtitle tag="h6" className="mb-2 text-muted">
+                        Préparation :
+                      </CardSubtitle>
+                        <CardText>{r.preparation}</CardText>
+                        <Button 
+                          onClick={()=> {saveRecipe(r._id); console.log('je suis dans le click')}}
+                          color="info">Enregistrer la recette</Button>
+                    </CardBody>
+                    </Collapse> 
+                  </Card>
+                
+          
+          {/* {// <div key={i} className="home-recipe">   
+          //   <h4>{r.name}</h4> 
+          //   <img className='img-recipe' src={r.picture}/>
+          //   <div className="text-recipe">
+          //     <p>{`Temps total : ${r.time}, préparation: ${r.preparation_time}, cuisson: ${r.cook_time}`}</p>
+          //     <p>{`${r.accessibility}, ${r.cost}`}</p>
+          //     </div>
+          //     <div>
+          //     <h4>Ingrédients :</h4>
+          //     <p style={{borderBottom:"2px solid #8b4513", paddingBottom:"20px"}}>{r.ingredients}</p>
+          //     <h4>Préparation :</h4>
+          //     <p>{r.preparation}</p>
+          //     </div>
+          //      <div className="save-button" >
+          //         <Button
+          //           color="info"
+          //           onClick={()=> {saveRecipe(r._id); console.log('je suis dans le click')}}
+          //            >Enregistrer cette recette</Button>
+          //       </div> 
+          //   </div>} */}
             </div>
           )
-      })
+      });
 
       console.log('recipeList :', recipeListItems)
 
@@ -219,7 +186,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-      userInfo: state.userInfo, recipe: state.recipe
+      userInfo: state.userInfo, recipe: state.recipe, connexion: state.connexion
     };
   }
   
