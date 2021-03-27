@@ -13,8 +13,9 @@ import {createStore, combineReducers} from 'redux'
 
 import userInfo from './reducer/userInfoReducer'
 import connexion from './reducer/connexionReducer'
+import recipe from './reducer/recipeReducer'
 
-const store = createStore(combineReducers({userInfo, connexion}))
+const store = createStore(combineReducers({userInfo, connexion, recipe}))
 
 
 function App() {

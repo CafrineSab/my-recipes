@@ -6,27 +6,35 @@ import {Card, CardText, CardBody, CardTitle} from 'reactstrap';
 
 const MyAccount = (props) => {
 
-    const [myRecipe, setMyRecipe] = useState([])
+    const [recipeSaved, setRecipeSaved] = useState([])
     const [myInfos, setMyInfos] = useState([]);
 
-        const saveRecipeAccount = async () => {
-        setMyInfos(props.userInfo)
-        const data = await fetch(`/get-recipe/`);
-        console.log("variable d'état - myInfos: ",myInfos)
-        const userRecipe = await data.json()
-        setMyRecipe(userRecipe);
-    };
     useEffect(() => {
 
+        const saveRecipeAccount = async () => {
+            
+            setMyInfos(props.userInfo)
+
+            const data = await fetch(`/get-recipes/${props.userInfo.token}`);
+            const userRecipe = await data.json()
+            
+            console.log('data:', data)
+            console.log('userRecipe :', userRecipe.recipe)
+            setRecipeSaved(userRecipe.user);
+            
+    };
     saveRecipeAccount();
-    }, [saveRecipeAccount])
+    }, [])
+
+    console.log("variable d'état - myInfos: ",myInfos)
+    console.log('recipeSaved: ', recipeSaved)
 
     let recipeList = (
         <p>Vous n'avez pas enregistré aucune recette pour le moment</p>
     );
 
-    if(myRecipe.length){
-        recipeList = myRecipe.map((recipe, i) => {
+    if(recipeSaved.length){
+        recipeList = recipeSaved.map((recipe, i) => {
             return (
                 <div key={i} className="home-recipe">        
               <h1>{recipe.name}</h1> 

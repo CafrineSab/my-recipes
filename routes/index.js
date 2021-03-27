@@ -5,6 +5,7 @@ var recipeModel = require('../models/recipes')
 
 const bcrypt = require('bcrypt');
 var uid2 = require('uid2');
+const { find, getMaxListeners } = require('../models/users');
 
 //test concluant pour le back
 
@@ -40,7 +41,7 @@ router.post('/sign-in', async function(req, res, next) {
         result = "true"
         token = searchUser.token
          console.log('ligne 40:', searchUser.firstName)
-        res.json({result: result, lastname: searchUser.lastName, firstname: searchUser.firstName, token: token, email: searchUser.email})
+        res.json({result: result, lastname: searchUser.lastName, firstname: searchUser.firstName, token: token, email: searchUser.email, id: searchUser._id})
       } 
       else {
         result = "erreur email ou mdp"
@@ -102,6 +103,7 @@ router.post('/sign-up', async function(req, res, next) {
   }
 });
 
+//recherche des recettes par catégorie
 router.post('/recipes', async function(req, res, next) {
   const category = req.body.categorie
   console.log('ligne 104:', req.body)
@@ -113,11 +115,12 @@ router.post('/recipes', async function(req, res, next) {
   res.json({recipe})
 })
 
-router.put('/add-recipe', async function (req, res, next) {
+//ajoute des recettes de l'utilisateur depuis son compte
+/*router.post('/add-recipe', async function (req, res, next) {
   const user = await userModel.findOne({ token: req.body.token });
   console.log('user: ', user)
-  if (user == null) {
-    res.redirect('/sign-in')
+  if (user) {
+    const recipe = req.body.recipe
   } else {
     const saveRecipe = req.body.recipe;
     console.log(saveRecipe);
@@ -136,14 +139,67 @@ router.put('/add-recipe', async function (req, res, next) {
    console.log('newRecipe :', newRecipe)
   }
   res.json({ message: "ok" });
+});*/
+
+router.put('/add-recipe', async function (req, res, next) {
+  console.log('je passe ici')
+
+    const user = await userModel.findById({ _id: req.body.id });
+    console.log('user', user)
+    
+
+
+  // const findRecipe = await recipeModel.find({_id: req.body.id})
+
+  // console.log('findRecipe: ', findRecipe)
+  // const reqBodyId = req.body.key
+  // console.log('reqBodyId', reqBodyId)}
+const id = req.body.id; 
+console.log("req.body@@@@@@@", JSON.parse(req.body.recipes))
+  userModel.findByIdAndUpdate(id, {recipes:JSON.parse(req.body.recipes) }, { useFindAndModify: false })
+  .then(data => {
+    if (!data) {
+      res.status(404).send({
+        message: `Cannot update Tutorial with id=${token}. Maybe Tutorial was not found!`
+      });
+    } else res.send({ message: "Tutorial was updated successfully." });
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: err
+    });
+  });
 });
 
+
+  //const user = await userModel.findOne({ token: req.body.token })
+
+    //const saveRecipe = req.body.recipe;
+    //console.log('saveRecipe :', saveRecipe);
+
+
+   
+  //  res.json({ recipe: findRecipe, token: user.token, message: "ok" });
+  // })
+
+//enregistre les recettes dans son compte
 router.get('/get-recipes/:token', async function (req, res, next) {
-  const user = await (await userModel.findOne({token: req.params.token}))
-  .populate('recipes')
-  .exec()
+
+  const recipe = await recipeModel.findById(req.query.id)
+
+  // const user = await userModel.findOne({token: req.params.token})
+  // .populate('recipes')
+  // .exec()
+
+  const user = await userModel.findOne({token: req.params.token})
+  .populate({
+    path: 'recipes',
+    model: recipeModel
+  }).exe()
+
+  console.log('user populate: ', user.recipes)
   
-  res.json(populatedRecipe);
+  res.json({message: 'ok bien reçu du back', user: user.recipes});
 })
 
 

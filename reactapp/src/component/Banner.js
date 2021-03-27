@@ -4,7 +4,9 @@ const Banner = (props)=> {
     return(
     <div>
         <nav  className="banner">
-            Bienvenue sur mon site de présentation <br/> de mon titre professionnel
+            <div className="banner-text">
+            <p className="t-banner">Toutes les recettes pour bien manger à la maison</p>
+            </div>
         </nav>
     </div>
     )

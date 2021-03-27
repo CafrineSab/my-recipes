@@ -40,7 +40,7 @@ import { connect } from 'react-redux';
           if (body.result === "true"){
              JSON.stringify({lastname: body.lastname, firstname: body.firstname, token: body.token, email: signInEmail }); 
               
-              const result = props.saveUserInfo({lastname: body.lastname, firstname: body.firstname, token: body.token, email: signInEmail});
+              const result = props.saveUserInfo({lastname: body.lastname, firstname: body.firstname, token: body.token, email: signInEmail, id: body.id});
               console.log('props.saveUserInfo ', result)
              const connexion = props.onSubmitConnexionStatus('true')
              console.log('connexion handlesign-in', connexion)

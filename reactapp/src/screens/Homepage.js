@@ -9,10 +9,7 @@ import {Redirect, Link} from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//mais pourquoi ??
-
     function Homepage(props){
-//il y a du chanement ici ?
 
     const [categorieSelected, setCategorieSelected] = useState()
     const [recipes, setRecipes] = useState([])
@@ -31,9 +28,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       className
     } = props;
 
-    if(modal == true){
+   /* if(modal == true){
       return <Redirect to="/logpage"/>
-    }
+    }*/
 
 //Choix de la catégorie
     const handleCategorie = (c) => {
@@ -50,14 +47,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         body: `categorie=${categorieSelected}`
       })
       const body = await dataRecipes.json()
+      console.log('dataRecipes:', body)
 
       setRecipes(body.recipe);
+      const reducerRecipe = props.saveRecipe(body)
       console.log("body:", body.recipe)
+      console.log('reducerRecipe :', reducerRecipe);
 
     }
     console.log('recettes:', recipes)
 
-        var saveRecipe = async() => {
+     /*   var saveRecipe = async() => {
           const data =  await fetch(`/get-recipes/${props.userInfo.token}`
           )
             const addRecipe = await data.json()
@@ -65,33 +65,75 @@ import 'bootstrap/dist/css/bootstrap.min.css';
             if(addRecipe.message === "Not Found"){
               <Redirect to="/logpage" />  
             }
-        }
+        }*/
 
-  /*  var saveRecipe = async () => {
-        if(props.userInfo){
-            console.log(' je suis dans le if saveRecipe function');
-           <Redirect to='/myaccount'/>;
-           var token = props.userInfo.token
+    var saveRecipe = async (_id) => {
+        const array = [{
+          _id: '605a97330e0832ea1ec2dc26',
+          categorie: 'Dessert',
+          name: 'salades',
+          picture: 'www.sab.com',
+          ingredients: ['toto', 'oeufs', 'salade'],
+          preparation: 'préparation',
+          time: '1h30',
+          preparation_time: '30 mn',
+          cook_time: '2mn',
+          accessibility: 'pas cher',
+          cost: 'facile'
+      },
+      {
+        _id: '605b061c0c977407a785421f',
+        categorie: 'Dessert',
+        name: 'salades',
+        picture: 'www.sab.com',
+        ingredients: ['toto', 'oeufs', 'salade'],
+        preparation: 'préparation',
+        time: '1h30',
+        preparation_time: '30 mn',
+        cook_time: '2mn',
+        accessibility: 'pas cher',
+        cost: 'facile'
+      },
+      {
+        _id: '605b068b0c977407a785a9c8',
+        categorie: 'Dessert',
+        name: 'salades',
+        picture: 'www.sab.com',
+        ingredients: ['toto', 'oeufs', 'salade'],
+        preparation: 'préparation',
+        time: '1h30',
+        preparation_time: '30 mn',
+        cook_time: '2mn',
+        accessibility: 'pas cher',
+        cost: 'facile'
+      }]
+          console.log("ident", _id)
+          const postRecette = recipes.find(r => r._id === _id)
+          props.saveRecipe(postRecette)
 
-            if(props.userInfo.token) {
-            await fetch('/add-recipe', {
-            method: 'PUT',
+          console.log("posted Recette", postRecette)
+          if(props.userInfo) {
+            let id = props.userInfo.id
+
+              const data =  await fetch('/add-recipe', {
+            method: 'put',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `recipe=${recipes}token=${token}`
+            body: `recipes=${JSON.stringify(postRecette)}&id=${id}`
       })
-    }
-    } else {
-        console.log('je suis dans le else saveRecipe function')
-         return <Redirect to="/logpage" />;
-    }
-} */
-  
+          const addRecipe = await data.json()
+          console.log('addRecipe :', addRecipe)
+          }
+
+   
+} 
+
+
     //Affiche les recettes au click de l'utilisateur
       var recipeListItems = recipes.map((r, i) => {
           return(
-          <div key={i} className="home-recipe">        
-              <h1>{r.name}</h1> 
-              <h3>{r.categorie}</h3>
+          <div key={i} className="home-recipe">   
+            
+              <h2>{r.name}</h2> 
               <div>
               <img className='img-recipe' src={r.picture}/>
               </div>
@@ -104,14 +146,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
               <h4>Préparation :</h4>
               <p>{r.preparation}</p>
               </div>
-              {/* <div className="save-button" >
-                  <button 
-                    className="quest-button"
-                    onClick={()=> {saveRecipe()}}
-                     >Enregistrer cette recette</button>
-                  </div> */}
+               <div className="save-button" >
+                  <p
+                    className="button-recipe"
+                    onClick={()=> {saveRecipe(r._id); console.log('je suis dans le click')}}
+                     >Enregistrer cette recette</p>
+                  </div> 
                 <div>
-      <Button color="danger" onClick={toggle}>Enregistrer</Button>
+     {/* { <Button color="danger" onClick={toggle}>Enregistrer</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
@@ -120,23 +162,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         <ModalFooter>
           <Button 
             color="secondary" 
-            onClick={toggle}>Me connecter</Button>
+            onClick={() => saveRecipe()}>Me connecter</Button>
         </ModalFooter>
-      </Modal>
+      </Modal>} */}
     </div>
             </div>
           )
       })
 
+      console.log('recipeList :', recipeListItems)
+
+
     return(
-        <div>
-            <Header/>
-            <Banner/>
+      <div >
+           <Header/>
+           <Banner/>
+
+        <div className="homepage-main">
 
             <div className="home-quest">
-                <h2>Découvrez nos recettes de cuisine !!</h2>
+                <h2 className="title-process">Tout d'abord choisissez la catégorie de recette <br/> que vous souhaitez cuisiner</h2>
                 <p>Vous ne serez plus en manque d'inspiration pour vos repas du quotidien !</p>
                 <p>Vous souhaitez  découvrir quel type de recette :</p>
+            </div>
+            <div>
+            <h4> <Link to="logpage">Connectez-vous pour enregistrer vos recettes préférées</Link></h4>
             </div>
             <div className='buttons-hp'>
                 <button             
@@ -155,19 +205,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                 </div>
 
        
-
+                </div>
                 <Footer/>
         </div>
     )
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    saveRecipe: function (recipe) {
+      dispatch({ type: "saveRecipe", recipe: recipe});
+    }
+  }
+};
+
 function mapStateToProps(state) {
     return {
-      userInfo: state.userInfo,
+      userInfo: state.userInfo, recipe: state.recipe
     };
   }
   
   export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(Homepage);
