@@ -116,16 +116,7 @@ router.post('/recipes', async function(req, res, next) {
 })
 
 //ajoute des recettes de l'utilisateur depuis son compte
-router.post('/add-new-recipe', async function (req, res, next) {
-
-    console.log('req.categorie!!!!!', req.body.categorie)
-    console.log('req.name!!!!!', req.body.name)
-    console.log('req.ingredients!!!!!', req.body.ingredients)
-    console.log('req.preparation!!!!!', req.body.preparation_time)
-    console.log('req.prepTime!!!!!', req.body.time)
-    console.log('req.cookTime!!!!!', req.body.cook_time)  
-    console.log('req.pictures!!!!!', req.body.picture)       
-
+router.post('/add-new-recipe', async function (req, res, next) { 
 
     const newRecipe = new recipeModel({
       categorie: req.body.categorie,
