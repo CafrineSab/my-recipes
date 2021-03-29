@@ -117,13 +117,7 @@ router.post('/recipes', async function(req, res, next) {
 
 //ajoute des recettes de l'utilisateur depuis son compte
 router.post('/add-new-recipe', async function (req, res, next) {
-// {  const user = await userModel.findOne({ token: req.body.token });
-//   console.log('user: ', user)}
-  // if (user) {
-  //   const recipe = req.body.recipe
-  // } else {
-    //const saveRecipe = req.body.recipe;
-    //console.log(saveRecipe);
+
     console.log('req.categorie!!!!!', req.body.categorie)
     console.log('req.name!!!!!', req.body.name)
     console.log('req.ingredients!!!!!', req.body.ingredients)
@@ -143,13 +137,11 @@ router.post('/add-new-recipe', async function (req, res, next) {
       preparation_time: req.body.preparation_time,  
       cook_time: req.body.cook_time,
     });
-    //newRecipe.users.push(req.body.token);
+
    const savedRecipe = await newRecipe.save();
-   // user.itineraries.push(newItinerary._id);
-   // await user.save();
-  // console.log('saverecipe:', saveRecipe)
+
    console.log('newRecipe :', savedRecipe)
- // }
+
   res.json({ message: "ok", category: savedRecipe.categorie, nameRecipe: savedRecipe.name, ingredients: savedRecipe.ingredients, time: savedRecipe.preparation_time });
 });
 
@@ -159,22 +151,14 @@ router.put('/add-recipe', async function (req, res, next) {
     const user = await userModel.findById({ _id: req.body.id });
     console.log('user', user)
     
-
-
-  // const findRecipe = await recipeModel.find({_id: req.body.id})
-
-  // console.log('findRecipe: ', findRecipe)
-  // const reqBodyId = req.body.key
-  // console.log('reqBodyId', reqBodyId)}
-const id = req.body.id; 
 console.log("req.body@@@@@@@", JSON.parse(req.body.recipes))
   userModel.findByIdAndUpdate(id, {recipes:JSON.parse(req.body.recipes) }, { useFindAndModify: false })
   .then(data => {
     if (!data) {
       res.status(404).send({
-        message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
+        message: `Cannot update Recipe with id=${id}. Maybe Recipe was not found!`
       });
-    } else res.send({ message: "Tutorial was updated successfully." });
+    } else res.send({ message: "Recipe in user account was updated successfully." });
   })
   .catch(err => {
     res.status(500).send({
@@ -193,7 +177,7 @@ console.log("req.body@@@@@@@", JSON.parse(req.body.recipes))
    
   //  res.json({ recipe: findRecipe, token: user.token, message: "ok" });
   // })
-
+        
 //enregistre les recettes dans son compte
 router.get('/get-recipes/:id', async function (req, res, next) {
 

@@ -37,32 +37,23 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
             body: `signInEmail=${signInEmail}&signInPassword=${signInPassword}`
           })
           const body = await dataSignIn.json()
-          console.log("body:", body);
     
           if (body.result === "true"){
              JSON.stringify({lastname: body.lastname, firstname: body.firstname, token: body.token, email: signInEmail }); 
               
               const result = props.saveUserInfo({lastname: body.lastname, firstname: body.firstname, token: body.token, email: signInEmail, id: body.id});
-              console.log('props.saveUserInfo ', result)
-             const connexion = props.onSubmitConnexionStatus('true')
-             console.log('connexion handlesign-in', connexion)
+              const connexion = props.onSubmitConnexionStatus('true')
               setUserExists(true)
-              //Enregistrement des données du user ds Local Storage
-            // props.saveUserInfo({ firstname: body.firstname, token: body.token, email: signInEmail });
-            // props.onSubmitConnexionStatus("true"); 
           } 
           else if (body.result === "erreur champs vides"){
-            console.log("ligne 53:", body.result);
             setErrorsSignin(body.error)
             props.onSubmitConnexionStatus("signin"); 
           }
           else if (body.result === "erreur email ou mdp"){
-            console.log("ligne 45:", body.result);
             setErrorsSignin(body.error)
             props.onSubmitConnexionStatus("signin");
           }
           else if (body.result === "erreur utilisateur inexistant"){
-            console.log("ligne 50:", body.result);
             setErrorsSignin(body.error)
             let timeOut = setTimeout(function () {
             props.onSubmitConnexionStatus("false"); 
@@ -70,10 +61,6 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
             return () => { clearTimeout(timeOut) };
                     
       }
-      // else {
-      //   setErrorsSignin(body.error)
-      //   console.log("test", body.error)
-      // }
   }
 
 
@@ -91,14 +78,10 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `lastname=${lastName}&firstname=${firstName}&signUpEmail=${signUpEmail}&signUpPassword=${signUpPassword}`
       });
-    const body = await dataSignUp.json();
-    console.log('handleSignUp body:', body)
+        const body = await dataSignUp.json();
     if (body.result === true) {
         setUserExists(true);
         props.onSubmitConnexionStatus("true");
-
-        //JSON.stringify({ lastname: body.lastName, firstname: body.firstname, token: body.token, email: signUpEmail });
-
         props.saveUserInfo(body)        
     } else {
       setErrorsSignup(body.error)
@@ -106,18 +89,11 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
     } 
 }
 
-    console.log('userExists:', userExists)
-
-
   var tabErrorsSignup = listErrorsSignup.map((error, i) => {
     return (<p key={i}>{error}</p>)
   })
 
- /* const handleHadAccount = () => {
-    props.onSubmitConnexionStatus("signin");
-  };*/
-
-
+//Regex email - useEffect pour que l'input email puisse être modifier si celui-ci ne correspond pas au schéma
   useEffect(() => {
     var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     
@@ -131,12 +107,9 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
     }
     }
   
-    console.log('function validate email --> variable email : ', signUpEmail)
-    //console.log('validEmail :', validEmail)
-  
   }, [signUpEmail])
   
-  //REGEX PASSWORD
+  //REGEX PASSWORD - useEffect pour que l'input mot de passe puisse être modifier si celui-ci ne correspond pas au schéma
   useEffect(() => {
   var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
   if(signUpPassword !== ''){
@@ -148,8 +121,6 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
     setMessagePassword("9 caractères minimum, contenant au moins 1 majuscule, 1 caractère spéciale et 1 chiffre");
   }
   }
-  console.log('password : ', signUpPassword)
-  //console.log('validPassword :', validPassword)
   
   }, [signUpPassword])
 
@@ -157,21 +128,17 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
     useEffect(()=> {
         if(signUpPassword !== '' && confirmSignUpPassword !==''){
         setIsValid(false);
-        // upload = false
         if(signUpPassword === confirmSignUpPassword){
         setIsValid(true);
-        // upload = true;
         } 
-        }
+      }
         }, [confirmSignUpPassword])
 
         if(userExists === true){
-          console.log('je suis dans le if de redirection');
           return (<Redirect to='/myaccount'/>)
         }
     
-
-  
+ 
   
     return (
       <div>

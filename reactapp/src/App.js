@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Homepage from './screens/Homepage'
 import MyAccount from './screens/MyAccount'

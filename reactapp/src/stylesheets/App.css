@@ -1,3 +1,7 @@
+body {
+  background-color: #FDFDF5;
+}
+
 .header {
   display: flex;
   height: 150px;
@@ -5,14 +9,6 @@
   justify-content: space-around;
   align-items: center;
 }
-
-.footer {
-  padding: 20px;
-  height: 100px;
-  background-color: #25221e;
-  color: #FDFDF5;
-}
-
 
 .header-li {
   font-size: 20px;
@@ -26,13 +22,21 @@
   width: 100px;
 }
 
+.footer {
+  padding: 20px;
+  height: 100px;
+  background-color: #25221e;
+  color: #FDFDF5;
+}
+
 .banner {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   background-image: url('../assets/saumon_echalote.jpeg');
-/* {  background: center / contain no-repeat url('../assets/}saumon_echalote.jpeg'); */
+  height: 60vh;
+  width: auto;
 }
 
 .banner-text {
@@ -51,33 +55,30 @@
   padding-top: 20px;
 }
 
-body {
-  background-color: #FDFDF5;
-}
-
+/*Myaccount*/
 .main {
   width: 80%;
 }
 
+/*Homepage*/
 .homepage-main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.homepage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*QUESTIONNAIRE*/
 .home-quest {
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 30px;
+}
+
+.title-process {
+  font-size: 35px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .title-connect {
@@ -90,155 +91,73 @@ body {
   color: #8b4513;
 }
 
-.title-hp {
-  text-align: center;
-  font-size: 60px;
-}
-
-.image {
-  width: 400px;
-  height: auto;
-  margin-left: 40px;
-
-}
-
-.text-banner {
-  text-align: center;
-  margin-left: 70px;
-  font-size: 20px;
-}
-
-.text-hp {
-  text-align: left;
-  margin-left: 70px;
-  font-size: 20px;
-  border: 1px solid #F8C29F;
-  width: 70%;
-  height: auto;
-}
-
 .buttons-hp {
   display: flex;
   justify-content: center;
 }
 
-.buttons-arr {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.button {
+.button-recipe {
   background-color: #F8C29F;
-  width: 209px;
-  height: 70px;
+  width: 100%;
+  height: 50px;
   border-radius: 22px;
   margin: 20px;
-  font-family: 'Poppins', sans-serif;
-  text-decoration: none;
-  color: black;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  border: solid 1px #303036;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-}
-
-.google {
-  width: 200px;
-  height: auto;
-}
-
-.apple {
-  width: 130px;
-  height: auto;
-}
-
-.quest-button {
-  background-color: #FCE7D9;
-  width: 150px;
-  height: 30px;
-  margin: 10px;
-  font-family: 'Poppins', sans-serif;
-  text-decoration: none;
-  color: black;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  border: solid 1px #303036;
-  font-size: 14px;
-}
-
-.button-selected {
-  background-color: #F8C29F;
-  width: 150px;
-  height: 30px;
-  margin: 10px;
-  font-family: 'Poppins', sans-serif;
-  text-decoration: none;
-  color: black;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  border: solid 1px #303036;
-  font-size: 14px;
-}
-
-.loading-text {
   font-size: 25px;
-}
-
-.loading-image {
-  height: 300px;
-  width: auto;
-}
-
-.title-process {
-  font-size: 35px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.text-process {
-  font-size: 17px;
-  text-align: left;
-}
-
-.image-process {
-  width: 400px;
-  height: auto;
-  margin-right: 40px;
-}
-
-.banner {
-  height: 60vh;
-  width: auto;
-}
-
-.card-hp {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: #303036;
+  justify-content: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: #FCE7D9;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  border: solid 1px #303036;
+  text-align: center;
 }
 
-.card-style {
-  border: solid 2px #F8C29F;
-  width: 400px;
-  height: auto;
+.addrecipe {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-addrecipe {
+  text-align: center;
   margin: 20px;
+  font-size: 24px;
+  color: #8b4513;
+  font-weight: bold;
+  border-top: 2px solid grey;
+  width: 60%;
+  padding: 30px;
+}
+
+.addrecipe-form {
+  width: 30%;
+  margin: 30px;
+}
+
+/*Logpage*/
+
+.logpage {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.sign-in {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
+}
+
+.sign-up {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
 }
 
 .text-err{
@@ -246,33 +165,10 @@ body {
   font-size: 12px;
 }
 
-.home-recipe {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 70%;
-  margin: 20px;
-}
-
-.recipe{
-  display: flex;
-  /* {justify-content:center;} */
-  align-items: center;
-  flex-direction: column;
-}
-
-.recipe-card {
-  display: flex;
-  /* {align-items:flex-end;} */
-  flex-direction: column;
-  margin: 30px;
-  width: 100ù;
-}
-
-.recipe-saved {
-  /* {width: 30%;} */
-  margin: 20px;
+/*Myaccount*/
+.text-process {
+  font-size: 17px;
+  text-align: left;
 }
 
 .main {
@@ -282,76 +178,17 @@ body {
   justify-content: space-around;
 }
 
-
-.img-recipe {
-  width: 70%;
-  height: auto;
-  border: solid 2px #f5f5dc;
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  width: 100ù;
 }
 
-.text-recipe {
-  width: 100%;
-  font-size: 18px;
-  text-align: center;
-  font-style: italic;
-  margin-bottom: 20px;
-  border-bottom: #8b4513 2px solid;
-}
-
-.text-recipe-prep {
-  width: 80%;
+.recipe{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 
-.button-recipe {
-    background-color: #F8C29F;
-    width: 100%;
-    height: 50px;
-    border-radius: 22px;
-    margin: 20px;
-    font-size: 25px;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: #303036;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    border: solid 1px #303036;
-    text-align: center;
-  }
-
-  .save-button {
-    width: 250px;
-    height: 40px;
-    margin: 20px;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: #8b4513;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    font-weight: bolder;
-    font-size: 14px;
-  }
-
-  .logpage {
-    display: flex;
-    justify-content: space-around;
-
-  }
-
-  .sign-in {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 30px;
-  }
-
-  .sign-up {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 30px;
-  }
