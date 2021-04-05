@@ -14,6 +14,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+app.listen(port,()=>{
+  console.log(`App running on port ${port}.`);
+  })
+
 router.post('/sign-in', async function(req, res, next) {
   var result = ""
   var searchUser = null
