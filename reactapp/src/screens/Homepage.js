@@ -50,7 +50,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `categorie=${categorieSelected}`
+        body: `categorie=${JSON.stringify(categorieSelected)}`
       })
       const body = await dataRecipes.json()
       console.log('dataRecipes:', body)
