@@ -46,7 +46,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
    //Affiche la catégorie de plats choisi s(entrée, plat ou dessert)
       const onSubmitCategorie = async () => {
-      const dataRecipes = await fetch("/recipes",
+      const dataRecipes = await fetch("https://sheltered-inlet-01930.herokuapp.com/recipes",
       {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},

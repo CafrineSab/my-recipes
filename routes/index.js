@@ -105,7 +105,7 @@ router.post('/sign-up', async function(req, res, next) {
 
 //recherche des recettes par catégorie
 router.post('/recipes', async function(req, res, next) {
-  const category = JSON.parse(req.body.categorie)
+  const category = req.body.categorie
   console.log('categorie:', category)
 
       const recipe = await recipeModel.find({categorie: category})
