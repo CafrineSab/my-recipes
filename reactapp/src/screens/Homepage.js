@@ -46,7 +46,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
    //Affiche la catégorie de plats choisi s(entrée, plat ou dessert)
       const onSubmitCategorie = async () => {
-      const dataRecipes = await fetch("/recipes",
+      const dataRecipes = await fetch("https://sheltered-inlet-01930.herokuapp.com/recipes",
       {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -73,7 +73,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
           if(props.userInfo) {
             let id = props.userInfo.id
 
-              const data =  await fetch('/add-recipe', {
+              const data =  await fetch('https://sheltered-inlet-01930.herokuapp.com/add-recipe', {
             method: 'put',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: `recipes=${JSON.stringify(postRecette)}&id=${id}`
@@ -84,7 +84,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
       //Ajout de recette lien avec le backend
       const handleAddNewRecipe  = async () => {
-        const dataAddRecipe = await fetch("/add-new-recipe", {
+        const dataAddRecipe = await fetch("https://sheltered-inlet-01930.herokuapp.com/add-new-recipe", {
           method: 'POST',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           body: `categorie=${category}&name=${nameRecipe}&ingredients=${ingredients}&preparation_time=${prepTime}&time=${time}&cook_time=${cookTime}&preparation=${preparation}`
