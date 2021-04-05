@@ -7,8 +7,7 @@ const bcrypt = require('bcrypt');
 var uid2 = require('uid2');
 const { find, getMaxListeners } = require('../models/users');
 
-//test concluant pour le back
-
+var port = process.env.port || 3000;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
