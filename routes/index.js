@@ -7,16 +7,11 @@ const bcrypt = require('bcrypt');
 var uid2 = require('uid2');
 const { find, getMaxListeners } = require('../models/users');
 
-var port = process.env.port || 3000;
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-app.listen(port,()=>{
-  console.log(`App running on port ${port}.`);
-  })
 
 router.post('/sign-in', async function(req, res, next) {
   var result = ""
