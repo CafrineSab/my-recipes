@@ -52,7 +52,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `categorie=${categorieSelected}`
       })
-      const body = await dataRecipes.json()
+      //const body = await dataRecipes.json()
       console.log('dataRecipes:', body)
 
       setRecipes(body.recipe);
